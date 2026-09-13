@@ -192,6 +192,8 @@
       color: var(--color-ink);
       text-underline-offset: 4px;
     }
+    .s-dark .cite { color: var(--color-cover-2); }
+    .s-dark .cite a { color: var(--color-cover-ink); }
     .rail {
       border-top: 1px solid var(--color-rule);
       padding: 14px 20px;
@@ -246,6 +248,46 @@
       max-width: 32ch;
     }
     .s-dark .cell p { color: var(--color-cover-2); }
+
+    .pad-quad {
+      display: flex;
+      flex-direction: column;
+      height: 880px;
+    }
+    .pad-quad .quad-head .h-md {
+      font-size: 44px;
+      max-width: none;
+    }
+    .pad-quad .quad-head .rule {
+      margin: 14px 0 0;
+    }
+    .cells-fill {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      margin-top: 24px;
+    }
+    .cells-fill .cell {
+      min-height: 0;
+      height: 100%;
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cells-fill .cell h3 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+    .cells-fill .cell p {
+      font-size: 22px;
+      line-height: 1.45;
+      max-width: none;
+    }
 
     .compare {
       display: grid;
@@ -558,6 +600,100 @@
       margin-bottom: 6px;
     }
 
+    .rlm {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto 20px auto 20px auto;
+      width: 1680px;
+      margin-top: 36px;
+      align-items: stretch;
+      gap: 0 28px;
+    }
+    .rlm-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .rlm-node {
+      min-height: 118px;
+      padding: 22px 28px 26px;
+      border: 1.5px solid #3a3a3a;
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .rlm-node.hi {
+      background: #fff;
+      border-color: #fff;
+      color: #111;
+    }
+    .rlm-node.hi b,
+    .rlm-node.hi h3 { color: #111; }
+    .rlm-node.hi p { color: #5a5a5a; }
+    .rlm-node b {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .rlm-node h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .rlm-node p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.35;
+      color: var(--color-cover-2);
+      max-width: 28ch;
+    }
+    .rlm-spine {
+      width: 1.5px;
+      background: #3a3a3a;
+      margin: 0 auto;
+      flex: 1;
+      min-height: 16px;
+    }
+    .rlm-cross {
+      grid-column: 1 / -1;
+      height: 1.5px;
+      background: #3a3a3a;
+      align-self: center;
+    }
+    .rlm-mid {
+      grid-column: 2;
+      grid-row: 1 / 4;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .rlm-mid .rlm-node {
+      min-height: 200px;
+      text-align: center;
+      align-items: center;
+    }
+    .rlm-left { grid-column: 1; grid-row: 1 / 4; }
+    .rlm-right { grid-column: 3; grid-row: 1 / 4; }
+    .rlm-foot-l { grid-column: 1; grid-row: 5; }
+    .rlm-foot-r { grid-column: 3; grid-row: 5; }
+    .slide.active .rlm-node { animation: up 560ms var(--ease-out) both; }
+    .slide.active .rlm-left .rlm-node:nth-child(1) { animation-delay: 40ms; }
+    .slide.active .rlm-left .rlm-node:nth-child(3) { animation-delay: 120ms; }
+    .slide.active .rlm-right .rlm-node:nth-child(1) { animation-delay: 80ms; }
+    .slide.active .rlm-right .rlm-node:nth-child(3) { animation-delay: 160ms; }
+    .slide.active .rlm-mid .rlm-node { animation-delay: 0ms; }
+    .slide.active .rlm-foot-l .rlm-node { animation-delay: 220ms; }
+    .slide.active .rlm-foot-r .rlm-node { animation-delay: 260ms; }
+
     .slide.active .a-rise { animation: rise 640ms var(--ease-out) both; }
     .slide.active .a-up { animation: up 520ms var(--ease-out) both; }
     .slide.active .a-up-2 { animation: up 520ms var(--ease-out) 90ms both; }
@@ -584,7 +720,8 @@
       .slide.active .a-up-3,
       .slide.active .a-stagger > *,
       .slide.active .box,
-      .slide.active .shell-box {
+      .slide.active .shell-box,
+      .slide.active .rlm-node {
         animation: none !important;
       }
     }
@@ -595,7 +732,8 @@
       .slide.active .a-up-3,
       .slide.active .a-stagger > *,
       .slide.active .box,
-      .slide.active .shell-box {
+      .slide.active .shell-box,
+      .slide.active .rlm-node {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
