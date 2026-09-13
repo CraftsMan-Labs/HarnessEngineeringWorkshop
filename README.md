@@ -4,6 +4,16 @@ Anyone with a **Runpod API key** can stand up the same SGLang endpoint we used i
 
 That API key is the only required credential. The NVFP4 weights are public.
 
+## Same model, different harness, different scores
+
+On [Terminal-Bench 2.0](https://www.tbench.ai/leaderboard/terminal-bench/2.0), Claude Opus 4.6 scores **58.0%** with Claude Code and **76.4%** with Meta-Harness. Same weights. Different harness.
+
+![Terminal-Bench 2.0: Claude Opus 4.6 at 58.0% with Claude Code vs 76.4% with Meta-Harness](assets/terminal-benchmark.png)
+
+Lee et al., [Meta-Harness: End-to-End Optimization of Model Harnesses](https://arxiv.org/abs/2603.28052) (arXiv:2603.28052). They search over harness code while the base model stays frozen. On the same benchmark their Table 7 reports Claude Haiku 4.5 at 13.9% (OpenHands), 27.5% (Claude Code), and 37.6% (Meta-Harness).
+
+This workshop is that gap on a model you can host: keep Qwen3.8-27B fixed, change the harness, measure the score.
+
 ## Deploy
 
 1. Create a key at [console.runpod.io/user/settings](https://console.runpod.io/user/settings)
