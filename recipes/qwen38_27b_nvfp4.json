@@ -1,0 +1,50 @@
+{
+  "id": "qwen38-27b-nvfp4",
+  "image": "lmsysorg/sglang:v0.5.19-cu129-runtime",
+  "model_path": "RadixArk/Qwen3.8-27B-NVFP4",
+  "served_model_name": "qwen38-27b",
+  "port": 30000,
+  "container_disk_gb": 40,
+  "persistent_gb": 80,
+  "persistent_path": "/workspace",
+  "min_cuda_version": "12.8",
+  "min_vram_warn_gb": 48,
+  "hf_home": "/workspace/hf-cache",
+  "blackwell_id_markers": [
+    "blackwell",
+    "rtx 5090",
+    "nvidia b200",
+    "nvidia b300"
+  ],
+  "env": {
+    "HF_HOME": "/workspace/hf-cache",
+    "SGLANG_OPT_MAMBA_SKIP_DECODE_LOCK": "1"
+  },
+  "marlin_env": {
+    "SGLANG_DISABLE_SILU_FP4_QUANT_FUSION": "1"
+  },
+  "sglang_flags": [
+    "--trust-remote-code",
+    "--attention-backend", "flashinfer",
+    "--kv-cache-dtype", "fp8_e4m3",
+    "--mem-fraction-static", "0.85",
+    "--chunked-prefill-size", "2048",
+    "--context-length", "131072",
+    "--max-running-requests", "1",
+    "--cuda-graph-max-bs", "1",
+    "--mamba-radix-cache-strategy", "extra_buffer_lazy",
+    "--mamba-ssm-dtype", "bfloat16",
+    "--max-mamba-cache-size", "16",
+    "--enable-cache-report",
+    "--enable-session-radix-cache",
+    "--speculative-algorithm", "EAGLE",
+    "--speculative-num-steps", "3",
+    "--speculative-eagle-topk", "1",
+    "--speculative-num-draft-tokens", "4",
+    "--reasoning-parser", "qwen3",
+    "--tool-call-parser", "qwen3_coder"
+  ],
+  "marlin_flags": [
+    "--fp4-gemm-backend", "marlin"
+  ]
+}
