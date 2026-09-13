@@ -1,0 +1,15 @@
+https://github.com/ruvnet/ruflo
+https://github.com/ruvnet/metaharness
+https://github.com/ruvnet/sparc
+
+The idea of having the above one is right. These are some systems which Ruben has created on behalf of the GenTX Foundation very early on. What this session is also about is that we are going to create whatever is there above just by using DeepSeek harness and help us achieve this to be customized in our way.
+
+Then I think over here, only we show and explain, and then I'll be explaining for 2 minutes why it matters. What harness means to us is two things:
+1. I have a task in my mind. What is the best way for me to share the information with the agent so that we are speaking the same language?
+2. How can I have the agent do what I have in my mind consistently every single time?  That was what harness means to us.
+
+Hence, harness engineering became a very big thing.
+
+Then I think in the next slide we'll have the same model, different harness stuff. When you have meta harness, this is the terminal bench, and when you have a test plot, it is a different score, but just having the same model, right?
+
+I think, in the current slide of this one, H1, H2, and H3 can be put into one slide, but as three sections in it. Can we do that instead of having this many slides? I'm just saying merge slides 18, 19, 20, and 21 as one slide in the current slide deck.
