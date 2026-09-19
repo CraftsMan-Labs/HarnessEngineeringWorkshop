@@ -29,4 +29,12 @@ if [ "$FACTORY_PLUGIN_ENABLED" = "1" ] && [ -f "$FACTORY_PLUGIN_PATH/package.jso
   fi
 fi
 
+# Bridge networking (not network_mode: host — unsupported on Windows Docker
+# Desktop) needs dsh bound on all interfaces inside the container so Docker's
+# published-port NAT can reach it; --trusted-host covers the /api browser-trust
+# fence for whatever authority the browser sends (127.0.0.1 is always trusted).
+if [ "${1:-}" = "web" ]; then
+  set -- "$@" --host 0.0.0.0 --trusted-host localhost --trusted-host host.docker.internal
+fi
+
 exec dsh "$@"

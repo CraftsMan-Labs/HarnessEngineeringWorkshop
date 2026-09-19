@@ -4,7 +4,9 @@ Runs [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`)
 
 ## Why it's built this way
 
-- **Host networking.** dsh's CLI intentionally refuses `--host 0.0.0.0` — its web server only binds `127.0.0.1`. Both containers use `network_mode: host` so dsh's `127.0.0.1:3080` is reachable from your machine, and dsh can reach 9Router at `127.0.0.1:20128` with no Docker DNS or port mapping involved.
+- **Bridge networking, published loopback-only ports.** `network_mode: host` doesn't work on Docker Desktop for Windows at all, and is unreliable on Mac — so both containers use ordinary bridge networking with explicit `ports: "127.0.0.1:PORT:PORT"` mappings instead. That works identically on Windows, Mac, and Linux with no experimental Docker Desktop settings.
+- **dsh bound to all interfaces, inside the container only.** dsh's CLI refuses `--host 0.0.0.0` by default — a deliberate DeepSeek safety check, since binding a code-execution agent to every interface would expose it to the whole network. Docker's published-port NAT can't reach a process bound to the container's own loopback, though, so `docker/dsh/allow-lan-bind.mjs` gates that check on `DSH_ALLOW_ALL_INTERFACES=1` (set by this compose file) instead of removing it outright. The safety property itself is preserved one layer out: the `127.0.0.1:PORT:PORT` publish binding is what actually keeps every port off the LAN. The Factory plugin's own Host↔Client bridge gets the same treatment (`plugins/dsh-software-factory/src/index.js`).
+- **`--trusted-host`.** dsh's `/api` browser-trust fence only accepts IP-literal Host headers by default (anti-DNS-rebinding) — so even `http://localhost:3080` would 403 on every API call, on any OS. The entrypoint passes `--trusted-host localhost --trusted-host host.docker.internal` alongside `--host 0.0.0.0`.
 - **Writable workspace.** dsh runs as the base image's non-root `node` (uid 1000) user, which owns `/workspace` (bind-mounted from `./workspace`) and `$DSH_HOME` (a named volume), so the agent can read and write files across container restarts.
 - **Sandbox backend.** dsh's own local sandbox tries bubblewrap first, then falls back to Landlock (`docs/subsystems`/`packages/sandbox/sandbox-local`). Bubblewrap needs to mount a fresh `/proc` for a nested namespace, which only works with the container fully `--privileged` — not worth granting for a workshop container. Landlock needs no extra container capabilities at all and was verified working (allows workspace writes, denies writes elsewhere), so dsh's runner-chain probe picks it automatically here; no `cap_add`/`security_opt` is set. This sandboxing is in addition to, not instead of, running dsh inside a disposable container — see [DeepSeek Harness's own safety notice](https://github.com/deepseek-ai/deepseek-harness/blob/master/SAFETY.md).
 
@@ -31,7 +33,7 @@ The `dsh` service mounts [`plugins/dsh-software-factory`](../plugins/dsh-softwar
 | `FACTORY_STATE_PATH` | `/workspace/.factory` | JSON/Markdown ledger (bind-mounted via `./workspace`) |
 | `FACTORY_MUTATION_TOOLS` | `write,edit,bash,...` | tools blocked until a ticket is approved |
 | `FACTORY_GATE_COMMANDS` | `npm test` | `|`-separated commands that must exit 0 before `pr_ready` |
-| `FACTORY_API_PORT` | `13081` | Host–Client bridge, bound to `127.0.0.1` only |
+| `FACTORY_API_PORT` | `13081` | Host–Client bridge; published as `127.0.0.1` only |
 
 Dashboard: http://127.0.0.1:3080 → sidebar **Factory**. Artifacts land in `./workspace/.factory` on the host.
 

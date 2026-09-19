@@ -49,7 +49,7 @@ JSON is canonical. Markdown is the reviewable copy. Writes are temp-file + renam
 | `FACTORY_WORKSPACE` | `/workspace` | cwd for gate commands |
 | `FACTORY_MUTATION_TOOLS` | `write,edit,bash,...` | tools blocked before approval |
 | `FACTORY_GATE_COMMANDS` | `npm test` | `|`-separated commands that must exit 0 |
-| `FACTORY_API_PORT` | `13081` | Host–Client HTTP bridge (127.0.0.1 only) |
+| `FACTORY_API_PORT` | `13081` | Host–Client HTTP bridge (published as 127.0.0.1 only; see docker/README.md) |
 | `FACTORY_INCIDENT_THRESHOLD` | `3` | recorded for later auto-incident work; unused today |
 
 ## Docker

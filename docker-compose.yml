@@ -3,11 +3,13 @@ services:
     image: decolua/9router:latest
     container_name: ninerouter
     restart: unless-stopped
-    # dsh's CLI refuses to bind its web UI to 0.0.0.0, so both services share
-    # the host network namespace: dsh reaches 9router at 127.0.0.1:20128 and
-    # the dashboard/web UI are reachable at the host's localhost with no
-    # extra port mapping or Docker DNS involved.
-    network_mode: host
+    # Bridge networking (the default): network_mode: host does not work on
+    # Docker Desktop for Windows at all, and is unreliable on Mac, so both
+    # services publish explicit ports instead. Binding the host side to
+    # 127.0.0.1 keeps this off the LAN, matching the old host-networking
+    # "loopback-only" posture.
+    ports:
+      - "127.0.0.1:20128:20128"
     environment:
       - PORT=20128
       - HOSTNAME=0.0.0.0
@@ -21,13 +23,20 @@ services:
       context: ./docker/dsh
     container_name: dsh
     restart: unless-stopped
-    network_mode: host
+    ports:
+      - "127.0.0.1:3080:3080"
+      - "127.0.0.1:${FACTORY_API_PORT:-13081}:${FACTORY_API_PORT:-13081}"
     depends_on:
       - ninerouter
     environment:
       - DSH_HOME=/home/node/.dsh
       - DSH_WEB_AUTH=${DSH_WEB_AUTH:-0}
-      - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL:-http://127.0.0.1:20128/v1}
+      # dsh's CLI refuses --host 0.0.0.0 by default (RCE-exposure guard);
+      # allow-lan-bind.mjs gates that check on this instead. Required so the
+      # published ports above (bridge networking) can reach the process at
+      # all — see docker/README.md.
+      - DSH_ALLOW_ALL_INTERFACES=1
+      - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL:-http://ninerouter:20128/v1}
       - NINEROUTER_MODEL=${NINEROUTER_MODEL:-cc/claude-opus-4-6}
       - NINEROUTER_API_KEY=${NINEROUTER_API_KEY:-}
       - FACTORY_PLUGIN_ENABLED=${FACTORY_PLUGIN_ENABLED:-1}

@@ -18,6 +18,9 @@ RUN mkdir -p /workspace "$DSH_HOME" \
 COPY relax-web-auth.mjs /usr/local/lib/relax-web-auth.mjs
 RUN node /usr/local/lib/relax-web-auth.mjs
 
+COPY allow-lan-bind.mjs /usr/local/lib/allow-lan-bind.mjs
+RUN node /usr/local/lib/allow-lan-bind.mjs
+
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

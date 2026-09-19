@@ -159,9 +159,15 @@ export function startApiServer(api, port) {
     }
     send(404, { ok: false, error: 'not found' })
   })
+  // Bind every interface inside the container: under bridge networking (the
+  // Docker Desktop-on-Windows-compatible mode), a published port cannot reach
+  // a process bound to the container's own loopback. The "127.0.0.1 only"
+  // boundary this used to provide is instead enforced one layer out, by
+  // publishing this port as 127.0.0.1:PORT:PORT in docker-compose.yml.
+  const bindHost = process.env.FACTORY_API_BIND_HOST || '0.0.0.0'
   return new Promise((resolve, reject) => {
     server.once('error', reject)
-    server.listen(port, '127.0.0.1', () => {
+    server.listen(port, bindHost, () => {
       server.unref()
       resolve(server)
     })
@@ -353,7 +359,7 @@ export function apply(ctx, config = {}) {
   let server
   const mount = async () => {
     server = await startApiServer(api, resolved.apiPort)
-    ctx.logger?.('software-factory')?.info(`api on 127.0.0.1:${resolved.apiPort}`)
+    ctx.logger?.('software-factory')?.info(`api on port ${resolved.apiPort} (published as 127.0.0.1 only)`)
   }
 
   if (ctx.effect) {
