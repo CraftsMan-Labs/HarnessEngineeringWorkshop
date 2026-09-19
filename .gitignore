@@ -220,3 +220,6 @@ __marimo__/
 # Playwright CLI scratch dumps
 .playwright-cli/
 **/_preview*.png
+
+# dsh workspace bind mount (docker-compose.yml)
+/workspace/
