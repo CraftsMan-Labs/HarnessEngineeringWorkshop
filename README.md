@@ -82,3 +82,7 @@ Keep the system prompt and tool schemas byte-identical so prefix cache hits. Res
 | 48 GB+ GPU | 27B NVFP4 is tight below that; the wizard warns, it does not block |
 
 The pod bills at the catalog hourly rate until you stop or terminate it in the Runpod console.
+
+## Run dsh + 9Router
+
+To run DeepSeek Harness against this endpoint through 9Router's model router, in Docker, see [`docker/README.md`](docker/README.md).

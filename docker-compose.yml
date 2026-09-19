@@ -1,0 +1,38 @@
+services:
+  ninerouter:
+    image: decolua/9router:latest
+    container_name: ninerouter
+    restart: unless-stopped
+    # dsh's CLI refuses to bind its web UI to 0.0.0.0, so both services share
+    # the host network namespace: dsh reaches 9router at 127.0.0.1:20128 and
+    # the dashboard/web UI are reachable at the host's localhost with no
+    # extra port mapping or Docker DNS involved.
+    network_mode: host
+    environment:
+      - PORT=20128
+      - HOSTNAME=0.0.0.0
+      - DATA_DIR=/app/data
+      - INITIAL_PASSWORD=${NINEROUTER_INITIAL_PASSWORD:-123456}
+    volumes:
+      - ninerouter_data:/app/data
+
+  dsh:
+    build:
+      context: ./docker/dsh
+    container_name: dsh
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      - ninerouter
+    environment:
+      - DSH_HOME=/home/node/.dsh
+      - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL:-http://127.0.0.1:20128/v1}
+      - NINEROUTER_MODEL=${NINEROUTER_MODEL:-cc/claude-opus-4-6}
+      - NINEROUTER_API_KEY=${NINEROUTER_API_KEY:-}
+    volumes:
+      - dsh_home:/home/node/.dsh
+      - ./workspace:/workspace
+
+volumes:
+  ninerouter_data:
+  dsh_home:
