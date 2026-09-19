@@ -176,3 +176,17 @@ flowchart TB
 ```
 
 Grill Me asks one question at a time, recommends an answer, and walks each branch of the decision tree until the human and the agent share a language. Then — and only then — the factory cuts tickets.
+
+## Implemented in this repo
+
+The [`plugins/dsh-software-factory`](../plugins/dsh-software-factory) DSH plugin runs the vertical slice above against workspace files, not an issue tracker.
+
+| Stage | Implemented now | Later adapter |
+|---|---|---|
+| Epic + Grill Me | `factory_align`, dashboard question, no approve while pending | Linear/Jira epic sync |
+| Ticket + developer DAG | ticket state machine; coding stays in the DSH conversation | GitHub draft PR creation |
+| Quality gates | configured commands + review evidence → `pr_ready` | CI vendor webhooks |
+| Observability / classify | explicit `factory_learn` classification | Grafana / Sentry ingest |
+| Three Whys + knowledge | exactly 3 whys, then `knowledge/*.md` | org-wide skill registry |
+
+Canonical state: `/workspace/.factory` (JSON + Markdown + `history.jsonl`). See the [plugin README](../plugins/dsh-software-factory/README.md) and [Docker notes](../docker/README.md).

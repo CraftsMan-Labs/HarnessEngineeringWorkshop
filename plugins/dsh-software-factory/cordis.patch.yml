@@ -1,0 +1,20 @@
+- insert:
+    - id: software-factory
+      name: dsh-software-factory
+      config:
+        root: /workspace/.factory
+        workspace: /workspace
+        apiPort: 13081
+        mutationTools:
+          - write
+          - edit
+          - bash
+          - shell
+          - apply_patch
+          - str_replace
+          - write_file
+          - edit_file
+          - run_terminal_cmd
+        gateCommands:
+          - npm test
+        incidentFailureThreshold: 3

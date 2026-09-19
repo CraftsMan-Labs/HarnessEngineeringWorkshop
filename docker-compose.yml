@@ -26,12 +26,21 @@ services:
       - ninerouter
     environment:
       - DSH_HOME=/home/node/.dsh
+      - DSH_WEB_AUTH=${DSH_WEB_AUTH:-0}
       - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL:-http://127.0.0.1:20128/v1}
       - NINEROUTER_MODEL=${NINEROUTER_MODEL:-cc/claude-opus-4-6}
       - NINEROUTER_API_KEY=${NINEROUTER_API_KEY:-}
+      - FACTORY_PLUGIN_ENABLED=${FACTORY_PLUGIN_ENABLED:-1}
+      - FACTORY_PLUGIN_PATH=/opt/dsh-software-factory
+      - FACTORY_STATE_PATH=${FACTORY_STATE_PATH:-/workspace/.factory}
+      - FACTORY_WORKSPACE=/workspace
+      - FACTORY_MUTATION_TOOLS=${FACTORY_MUTATION_TOOLS:-write,edit,bash,shell,apply_patch,str_replace,write_file,edit_file,run_terminal_cmd}
+      - FACTORY_GATE_COMMANDS=${FACTORY_GATE_COMMANDS:-npm test}
+      - FACTORY_API_PORT=${FACTORY_API_PORT:-13081}
     volumes:
       - dsh_home:/home/node/.dsh
       - ./workspace:/workspace
+      - ./plugins/dsh-software-factory:/opt/dsh-software-factory:ro
 
 volumes:
   ninerouter_data:

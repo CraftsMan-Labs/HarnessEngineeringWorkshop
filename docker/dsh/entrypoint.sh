@@ -18,4 +18,15 @@ llm-pi-ai:
 YAML
 fi
 
+# Load the software-factory bundle into the web profile. `dsh web` is an alias
+# for `--profile web`. Skip when disabled or the checkout is not mounted.
+FACTORY_PLUGIN_ENABLED="${FACTORY_PLUGIN_ENABLED:-1}"
+FACTORY_PLUGIN_PATH="${FACTORY_PLUGIN_PATH:-/opt/dsh-software-factory}"
+if [ "$FACTORY_PLUGIN_ENABLED" = "1" ] && [ -f "$FACTORY_PLUGIN_PATH/package.json" ]; then
+  profile_json="$DSH_HOME/profiles/web/package.json"
+  if [ ! -f "$profile_json" ] || ! grep -q '"dsh-software-factory"' "$profile_json"; then
+    dsh plugin --profile web add "$FACTORY_PLUGIN_PATH"
+  fi
+fi
+
 exec dsh "$@"
