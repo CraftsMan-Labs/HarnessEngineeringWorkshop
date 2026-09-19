@@ -7,16 +7,15 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && npm install -g @deepseek-ai/dsh
 
-RUN useradd --create-home --uid 1000 --shell /bin/bash dsh
-
-ENV DSH_HOME=/home/dsh/.dsh
+# node:22-slim already ships a UID-1000 "node" user; reuse it as dsh's owner.
+ENV DSH_HOME=/home/node/.dsh
 RUN mkdir -p /workspace "$DSH_HOME" \
-  && chown -R dsh:dsh /workspace "$DSH_HOME"
+  && chown -R node:node /workspace "$DSH_HOME"
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-USER dsh
+USER node
 WORKDIR /workspace
 
 EXPOSE 3080

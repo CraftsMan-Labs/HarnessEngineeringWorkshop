@@ -25,12 +25,12 @@ services:
     depends_on:
       - ninerouter
     environment:
-      - DSH_HOME=/home/dsh/.dsh
+      - DSH_HOME=/home/node/.dsh
       - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL:-http://127.0.0.1:20128/v1}
       - NINEROUTER_MODEL=${NINEROUTER_MODEL:-cc/claude-opus-4-6}
       - NINEROUTER_API_KEY=${NINEROUTER_API_KEY:-}
     volumes:
-      - dsh_home:/home/dsh/.dsh
+      - dsh_home:/home/node/.dsh
       - ./workspace:/workspace
     # dsh's local sandbox (bubblewrap, falling back to Landlock) needs these
     # to create nested namespaces from inside the container.
