@@ -32,13 +32,6 @@ services:
     volumes:
       - dsh_home:/home/node/.dsh
       - ./workspace:/workspace
-    # dsh's local sandbox (bubblewrap, falling back to Landlock) needs these
-    # to create nested namespaces from inside the container.
-    cap_add:
-      - SYS_ADMIN
-    security_opt:
-      - seccomp=unconfined
-      - apparmor=unconfined
 
 volumes:
   ninerouter_data:
