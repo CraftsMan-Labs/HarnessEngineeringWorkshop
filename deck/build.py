@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Assemble deck/index.html from modular sources under deck/src/.
+"""Assemble deck/static.html from modular sources under deck/src/.
 
 Usage:
-  python3 deck/build.py            # write index.html
-  python3 deck/build.py --check    # exit 1 if index.html is stale
+  python3 deck/build.py            # write static.html
+  python3 deck/build.py --check    # exit 1 if static.html is stale
   python3 deck/build.py --watch    # rebuild when sources change
 """
 
@@ -22,7 +22,7 @@ TEMPLATE_PATH = SRC_DIR / "template.html"
 FRAMEWORK_CSS = SRC_DIR / "framework.css"
 DECK_CSS = SRC_DIR / "deck.css"
 DECK_JS = SRC_DIR / "deck.js"
-OUTPUT_PATH = DECK_DIR / "index.html"
+OUTPUT_PATH = DECK_DIR / "static.html"  # ponytail: leave index.html to Vite
 
 SECTION_RE = re.compile(r"<section\b", re.I)
 SECTION_CLOSE_RE = re.compile(r"</section>", re.I)

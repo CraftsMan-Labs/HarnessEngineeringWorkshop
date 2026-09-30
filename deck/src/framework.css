@@ -42,7 +42,7 @@
       --dur-slow: 480ms;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
+    html, body, #app {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -142,7 +142,7 @@
        page. The viewer's "Share → PDF" relies on this; do not remove. */
     @media print {
       @page { size: 1920px 1080px; margin: 0; }
-      html, body {
+      html, body, #app {
         width: 1920px !important;
         height: auto !important;
         overflow: visible !important;
