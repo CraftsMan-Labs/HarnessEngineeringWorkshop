@@ -88,3 +88,99 @@ DELIVERY NOTES
   9Router = provider gateway
   SimpleCode = linear workflow orchestration
 
+RESEARCH-BACKED TALK TRACK — SLIDES 18–24
+
+18  DeepSeek Harness · plugin runtime
+- Current source inspected at 0.2.1-alpha.1. The project calls itself developer
+  preview and warns that compatibility-breaking changes are expected.
+- “Everything is a plugin” is literal: the model adapter, tool registry,
+  append-only session log, and agent loop are replaceable Cordis plugins.
+- Boot is composition, not inheritance: profile → ordered bundles → profile,
+  home, and CLI patch overlays → one plugin tree.
+- A capability seam has three roles: service definition, provider, consumer.
+  This is the transferable design; “use plugins” by itself is too vague.
+- Cordis registrations are reversible effects. Unloading a plugin unwinds its
+  listeners and registrations instead of leaving stale state.
+- Do not call it secure or production-ready. Its safety notice says it has not
+  undergone a security audit and sandboxing is not a sole security control.
+
+19  DeepSeek Harness · event log
+- The strongest implementation rule is “model-visible means logged.”
+- Durable session events reconstruct the exact history used for a request.
+  Live agent/capability events intercept work in flight.
+- Resume, fork, replay, persistence, telemetry, and projections derive from
+  the same append-only record.
+- Nuance: a hard process loss before an assistant stream settles can leave no
+  durable attempt stream. Event sourcing improves evidence; it is not magic.
+
+20  Cordis · composability
+- Keep this optional. The useful intuition is spatial and temporal:
+  a plugin declares the services it needs, and its effects disappear when it
+  unloads.
+- Do not teach the paper’s calculus in this talk.
+
+21  CocoIndex Code · retrieval and cache
+- Current source inspected at 0.2.42, classified Alpha.
+- It is a local code-search tool, not a planner or coding agent.
+- The default path creates syntax-aware chunks around 1,000 bytes, with a
+  250-byte minimum and 150-byte overlap, then returns top-k path/line spans.
+- The cache is the incremental index: unchanged files and unchanged chunk text
+  avoid re-embedding. It is not an LLM KV cache or response cache.
+- The invalidation key matters: changing the embedder or indexing parameters
+  forces re-embedding; changing chunk configuration forces re-chunking.
+- Operational nuance: CLI search does not refresh by default; MCP search does.
+  Staleness policy must be chosen deliberately.
+- The README’s “70% token saving” has no disclosed benchmark. Explain the
+  mechanism, not the percentage.
+
+22  9Router · provider gateway
+- Current source inspected at 0.5.99, still pre-1.0.
+- It is a credential-bearing local gateway, not an agent. A client calls one
+  endpoint; the gateway passes through matching formats or translates others.
+- Fallback is two explicit loops: rotate accounts for the same provider, then
+  move to the next model only when the human created an ordered combo.
+- It does not autonomously route “subscription → cheap → free.”
+- RTK filters tool results before the model sees them. Limits on diffs, grep
+  matches, and head/tail output make this lossy compression.
+- Security note: provider credentials and optional request bodies are local
+  data; MITM mode installs a local CA. Treat the proxy as a trust boundary.
+- Do not repeat “unlimited free,” “never hit limits,” or “lossless 20–40%.”
+
+23  SimpleCode · linear workflow
+- Current source inspected at 0.1.0, classified Alpha, with no matching GitHub
+  release/tag at inspection time.
+- YAML fixes the role sequence. Numbered prompts inside one role resume the
+  same vendor CLI session; the next role starts fresh.
+- “The last turn is the API”: output.md contains only the role’s latest stdout.
+  The final prompt must restate the plan, status, or verdict.
+- The next role receives the original inputs plus every prior output.md, so the
+  artifact chain can still grow even though sessions are fresh.
+- Human gates, checkpoint/resume, worktrees, and optional containers are real.
+- DAGs, conditional branches, schema-validated handoffs, context budgets, and
+  automatic repair after a blocked review are not implemented by the runner.
+- A blocked QA verdict is text until a human starts or resumes the next action.
+
+24  Synthesis
+- The four tools are complementary examples, not a complete endorsed stack.
+- 9Router owns client/provider adaptation.
+- CocoIndex owns query/relevant-span retrieval.
+- DeepSeek Harness owns service/plugin composition and the controlled loop.
+- SimpleCode owns role/artifact sequencing.
+- Every seam needs a stable contract, an explicit limit, telemetry, and a
+  replacement path. That is the first-principles lesson.
+
+SOURCE ANCHORS
+
+- DeepSeek Harness:
+  github.com/deepseek-ai/deepseek-harness/blob/main/docs/architecture.md
+  github.com/deepseek-ai/deepseek-harness/blob/main/SAFETY.md
+- CocoIndex Code:
+  github.com/cocoindex-io/cocoindex-code/blob/main/README.md
+  github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/indexer.py
+- 9Router:
+  github.com/decolua/9router/blob/master/open-sse/handlers/chatCore.js
+  github.com/decolua/9router/blob/master/open-sse/services/combo.js
+- SimpleCode:
+  github.com/CraftsMan-Labs/SimpleCode/blob/main/src/simplecode/runner.py
+  github.com/CraftsMan-Labs/SimpleCode/blob/main/docs/output-artifacts.md
+

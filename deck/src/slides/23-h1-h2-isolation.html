@@ -7,18 +7,18 @@
           <div class="cells-3 a-stagger">
             <div class="cell">
               <b>Direction</b>
-              <h3>Roles in order</h3>
-              <p>Static prompts and a YAML sequence keep the next step outside the model.</p>
+              <h3>Control stays outside</h3>
+              <p>YAML fixes role order. Numbered prompts continue one session inside each role.</p>
             </div>
             <div class="cell">
               <b>Context</b>
-              <h3>Artifact handoff</h3>
-              <p>Each role starts fresh. The previous role’s final output becomes the contract.</p>
+              <h3>The last reply is the API</h3>
+              <p>Each new role receives every prior <code>output.md</code>; each file contains only that role’s latest reply.</p>
             </div>
             <div class="cell">
-              <b>Boundary</b>
-              <h3>Linear, not magical</h3>
-              <p>No DAG, schema validation, automatic repair loop, or context budget. Add those deliberately.</p>
+              <b>Gate</b>
+              <h3>Pause, inspect, resume</h3>
+              <p>Human checkpoints are real. DAGs, schema validation, repair loops, and context budgets are not.</p>
             </div>
           </div>
           <p class="cite a-up-2"><a href="https://github.com/CraftsMan-Labs/SimpleCode" target="_blank" rel="noopener">github.com/CraftsMan-Labs/SimpleCode</a></p>

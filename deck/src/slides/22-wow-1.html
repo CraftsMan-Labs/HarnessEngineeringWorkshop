@@ -8,14 +8,15 @@
             <div class="col">
               <p class="lbl">Client contract</p>
               <h3>One endpoint</h3>
-              <p>Translate wire formats. Keep provider auth, model quirks, and account rotation behind the boundary.</p>
+              <p>Pass through when formats match; translate when they do not. Keep provider auth and quirks behind the boundary.</p>
             </div>
             <div class="col hi">
               <p class="lbl">Explicit policy</p>
-              <h3>Fallback you can see</h3>
-              <p>Try another account, then another listed model. “Free,” “unlimited,” and “lossless” are not architecture.</p>
+              <h3>Two fallback loops</h3>
+              <p>Try another account for the same provider; only then try the next model the human listed.</p>
             </div>
           </div>
+          <p class="body a-up-2" style="margin-top:28px; max-width:52ch">RTK reduces tool output by dropping detail. Treat it as lossy, and treat a credential-bearing local proxy as a security boundary.</p>
           <p class="cite a-up-2"><a href="https://github.com/decolua/9router" target="_blank" rel="noopener">github.com/decolua/9router</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>{{N}} / {{TOTAL}}</span></footer>

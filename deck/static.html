@@ -1320,26 +1320,26 @@
               <div class="frame-stage">
                 <div class="flow">
                   <div class="stack">
-                    <div class="box">Profile + patches</div>
+                    <div class="box">Profile</div>
                     <div class="to"></div>
-                    <div class="box hi">Cordis plugins</div>
+                    <div class="box">Ordered bundles + patches</div>
                     <div class="to"></div>
-                    <div class="box">Agent loop</div>
+                    <div class="box hi">Cordis plugin tree</div>
                     <div class="to"></div>
-                    <div class="box">Model · tools · session log</div>
+                    <div class="box">Model · tools · log · loop</div>
                   </div>
                 </div>
               </div>
-              <figcaption class="rail">Reveal capabilities by composing presets. Do not rebuild the loop.</figcaption>
+              <figcaption class="rail">No privileged core: capabilities mount beside one another.</figcaption>
             </figure>
             <div>
               <p class="kicker a-up">DeepSeek Harness</p>
               <div class="rule a-up"></div>
               <h2 class="h-md a-rise">The runtime is a plugin tree.</h2>
               <ul class="lines a-stagger">
-                <li>Services, not concrete classes.</li>
-                <li>H0–H4 are layered profiles.</li>
-                <li>The loop, tools, and log stay inspectable.</li>
+                <li>A service definition separates contract, provider, and consumer.</li>
+                <li>Unload unwinds registrations instead of leaving stale state.</li>
+                <li>Developer preview: powerful composition, breaking changes expected.</li>
               </ul>
             </div>
           </div>
@@ -1352,8 +1352,9 @@
         <div class="pad">
           <p class="kicker a-up">The engineering rule</p>
           <div class="rule a-up"></div>
-          <h2 class="h-xl a-rise">The log reconstructs what the model saw.</h2>
-          <p class="lede a-up-2" style="margin-top:32px">Resume, fork, replay, and refinement share one event stream.</p>
+          <h2 class="h-xl a-rise">Model-visible means logged.</h2>
+          <p class="lede a-up-2" style="margin-top:32px">Durable facts rebuild model history; live events intercept work in flight.</p>
+          <p class="body a-up-3" style="margin-top:28px; max-width:44ch">Resume, fork, replay, telemetry, and failure analysis derive from the same append-only session record.</p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>19 / 44</span></footer>
       </section>
@@ -1396,8 +1397,8 @@
           <p class="kicker a-up">CocoIndex Code · exploration</p>
           <div class="rule a-up"></div>
           <h2 class="h-xl a-rise">Give the model a card catalog.<br />Not the whole library.</h2>
-          <p class="lede a-up-2" style="margin-top:32px; max-width:36ch">AST-aware chunks → incremental embeddings → a few line-ranged results.</p>
-          <p class="body a-up-3" style="margin-top:32px; max-width:44ch">Lesson: retrieval is a harness boundary. It scopes context; it does not plan, review, or guarantee token savings.</p>
+          <p class="lede a-up-2" style="margin-top:32px; max-width:39ch">Syntax-bounded spans → memoized embeddings → top-k paths and line ranges.</p>
+          <p class="body a-up-3" style="margin-top:32px; max-width:46ch">The index is a cache with an invalidation key—not a chat cache. It scopes context; it does not plan, review, or prove “70% savings.”</p>
           <p class="cite a-up-3"><a href="https://github.com/cocoindex-io/cocoindex-code" target="_blank" rel="noopener">github.com/cocoindex-io/cocoindex-code</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>21 / 44</span></footer>
@@ -1413,14 +1414,15 @@
             <div class="col">
               <p class="lbl">Client contract</p>
               <h3>One endpoint</h3>
-              <p>Translate wire formats. Keep provider auth, model quirks, and account rotation behind the boundary.</p>
+              <p>Pass through when formats match; translate when they do not. Keep provider auth and quirks behind the boundary.</p>
             </div>
             <div class="col hi">
               <p class="lbl">Explicit policy</p>
-              <h3>Fallback you can see</h3>
-              <p>Try another account, then another listed model. “Free,” “unlimited,” and “lossless” are not architecture.</p>
+              <h3>Two fallback loops</h3>
+              <p>Try another account for the same provider; only then try the next model the human listed.</p>
             </div>
           </div>
+          <p class="body a-up-2" style="margin-top:28px; max-width:52ch">RTK reduces tool output by dropping detail. Treat it as lossy, and treat a credential-bearing local proxy as a security boundary.</p>
           <p class="cite a-up-2"><a href="https://github.com/decolua/9router" target="_blank" rel="noopener">github.com/decolua/9router</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>22 / 44</span></footer>
@@ -1435,18 +1437,18 @@
           <div class="cells-3 a-stagger">
             <div class="cell">
               <b>Direction</b>
-              <h3>Roles in order</h3>
-              <p>Static prompts and a YAML sequence keep the next step outside the model.</p>
+              <h3>Control stays outside</h3>
+              <p>YAML fixes role order. Numbered prompts continue one session inside each role.</p>
             </div>
             <div class="cell">
               <b>Context</b>
-              <h3>Artifact handoff</h3>
-              <p>Each role starts fresh. The previous role’s final output becomes the contract.</p>
+              <h3>The last reply is the API</h3>
+              <p>Each new role receives every prior <code>output.md</code>; each file contains only that role’s latest reply.</p>
             </div>
             <div class="cell">
-              <b>Boundary</b>
-              <h3>Linear, not magical</h3>
-              <p>No DAG, schema validation, automatic repair loop, or context budget. Add those deliberately.</p>
+              <b>Gate</b>
+              <h3>Pause, inspect, resume</h3>
+              <p>Human checkpoints are real. DAGs, schema validation, repair loops, and context budgets are not.</p>
             </div>
           </div>
           <p class="cite a-up-2"><a href="https://github.com/CraftsMan-Labs/SimpleCode" target="_blank" rel="noopener">github.com/CraftsMan-Labs/SimpleCode</a></p>
@@ -1461,13 +1463,13 @@
           <div class="rule a-up"></div>
           <h2 class="h-xl a-rise">Four products.<br />Four replaceable seams.</h2>
           <div class="pipe a-up-2" style="margin-top:52px; font-size:22px; gap:16px">
-            <span class="node">9Router<br /><small>models</small></span><span class="arr">→</span>
-            <span class="node">CocoIndex<br /><small>context</small></span><span class="arr">→</span>
-            <span class="node hi">DeepSeek<br /><small>kernel</small></span><span class="arr">→</span>
-            <span class="node">SimpleCode<br /><small>workflow</small></span>
+            <span class="node">9Router<br /><small>client ↔ provider</small></span><span class="arr">→</span>
+            <span class="node">CocoIndex<br /><small>query ↔ spans</small></span><span class="arr">→</span>
+            <span class="node hi">DeepSeek<br /><small>services ↔ plugins</small></span><span class="arr">→</span>
+            <span class="node">SimpleCode<br /><small>role ↔ artifact</small></span>
           </div>
-          <p class="pipe-ex a-up-3">gateway → retrieval → agent runtime → orchestration</p>
-          <p class="body a-up-3" style="margin:36px auto 0; max-width:44ch">The transferable design is the contract between layers—not loyalty to this stack.</p>
+          <p class="pipe-ex a-up-3">gateway → retrieval → agent runtime → linear workflow</p>
+          <p class="body a-up-3" style="margin:36px auto 0; max-width:48ch">Each owns one boundary and leaves major gaps. The reusable architecture is the contract—and the explicit limit—at every seam.</p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>24 / 44</span></footer>
       </section>
@@ -1928,7 +1930,7 @@ mutation / contract check
             <li><span class="n">02</span><span class="t">“Lossless compression”</span><span class="m">9Router RTK filters can truncate detail</span></li>
             <li><span class="n">03</span><span class="t">“Unlimited free”</span><span class="m">Provider quotas and terms still apply</span></li>
             <li><span class="n">04</span><span class="t">“Model independent”</span><span class="m">Wire formats travel; behavior still changes</span></li>
-            <li><span class="n">05</span><span class="t">“Production ready”</span><span class="m">Several examples remain pre-1.0 or alpha</span></li>
+            <li><span class="n">05</span><span class="t">“Production ready”</span><span class="m">DeepSeek is unaudited developer preview; SimpleCode is alpha</span></li>
           </ul>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>44 / 44</span></footer>
