@@ -343,6 +343,59 @@
       align-items: start;
     }
     .split-mid .frame-stage { height: 440px; }
+    .bond-analogy {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 72px;
+      align-items: center;
+      height: 760px;
+    }
+    .bond-copy .h-xl { max-width: 12ch; }
+    .bond-copy .lede {
+      margin-top: 32px;
+      max-width: 25ch;
+      font-size: 30px;
+    }
+    .bond-portraits {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: end;
+    }
+    .bond-card {
+      margin: 0;
+      border: 1px solid #3a3a3a;
+      background: #171717;
+      overflow: hidden;
+    }
+    .bond-card img {
+      display: block;
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: 50% 25%;
+      filter: saturate(0.82) contrast(1.06);
+    }
+    .bond-card-q img { object-position: 50% 38%; }
+    .bond-card figcaption {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 18px 17px;
+      border-top: 1px solid #3a3a3a;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .bond-card figcaption b {
+      color: var(--color-cover-ink);
+      font-size: 18px;
+    }
+    .bond-card figcaption span {
+      color: var(--color-cover-2);
+      font-size: 13px;
+    }
     .frame {
       position: relative;
       background: var(--color-paper-2);
@@ -957,14 +1010,27 @@
         <footer class="foot"><span>Software Hacktory</span><span>02 / 44</span></footer>
       </section>
 
-<section class="slide s-dark s-center s-axis" data-screen-label="03 Spec Reality">
+<section class="slide s-dark" data-screen-label="03 Spec Reality">
         <img class="brand" src="assets/logo-agentics-light.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">A useful analogy</p>
-          <div class="rule a-up"></div>
-          <h2 class="h-xl a-rise">The model is 007’s brain.<br />The harness is Q Branch.</h2>
-          <p class="lede a-up-2" style="margin-top:36px; max-width: 34ch">Mission brief. Gadgets. Communications. Guardrails. Evidence.</p>
-          <p class="body a-up-3" style="margin-top:36px; max-width: 42ch">A gadget is a tool. Q Branch is the integrated system that equips the agent to finish the mission reliably.</p>
+          <div class="bond-analogy">
+            <div class="bond-copy">
+              <p class="kicker a-up">A useful analogy</p>
+              <div class="rule a-up"></div>
+              <h2 class="h-xl a-rise">The model decides.<br />Q Branch makes it mission-ready.</h2>
+              <p class="lede a-up-2">Mission brief. Gadgets. Communications. Guardrails. Evidence.</p>
+            </div>
+            <div class="bond-portraits a-stagger" aria-label="James Bond and Q illustrate model and harness">
+              <figure class="bond-card">
+                <img src="assets/007.png" alt="James Bond, representing the model making decisions" />
+                <figcaption><b>007</b><span>Model · decides</span></figcaption>
+              </figure>
+              <figure class="bond-card bond-card-q">
+                <img src="assets/AgentiQ.png" alt="Q, representing the harness that equips the agent" />
+                <figcaption><b>Q Branch</b><span>Harness · equips</span></figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>03 / 44</span></footer>
       </section>
@@ -987,61 +1053,23 @@
         <footer class="foot"><span>Software Hacktory</span><span>04 / 44</span></footer>
       </section>
 
-<section class="slide s-paper" data-screen-label="05 Complexity Compounds">
+<section class="slide s-paper" data-screen-label="05 Lineage">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">Why it gets worse</p>
+          <p class="kicker a-up">Run of show</p>
           <div class="rule a-up"></div>
-          <h2 class="h-md a-rise">Complexity compounds.</h2>
-          <div class="split split-mid" style="margin-top:20px; height:680px; align-items:stretch">
-            <figure class="frame a-up" style="grid-column: 1 / -1">
-              <span class="tick tick-tl"></span><span class="tick tick-tr"></span>
-              <span class="tick tick-bl"></span><span class="tick tick-br"></span>
-              <div class="frame-stage shot" style="height:580px">
-                <img src="assets/badcode_vs_goodcode.png" alt="Flags version: an edit at every site versus enum version: a two line change when adding out-of-order state" />
-              </div>
-              <figcaption class="rail">Two states barely matters — add another spec and the wrong shape edits everywhere</figcaption>
-            </figure>
-          </div>
+          <h2 class="h-md a-rise">Build capability. Add control. Close the loop.</h2>
+          <ul class="agenda a-stagger">
+            <li><span class="n">01</span><span class="t">The kernel</span><span class="m">Model · tools · context · loop</span></li>
+            <li><span class="n">02</span><span class="t">The teaching objects</span><span class="m">Plugins · retrieval · routing · workflows</span></li>
+            <li><span class="n">03</span><span class="t">The brakes</span><span class="m">Checks · review · human judgment</span></li>
+            <li><span class="n">04</span><span class="t">The compounding loop</span><span class="m">Observe · learn · improve</span></li>
+          </ul>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>05 / 44</span></footer>
       </section>
 
-<section class="slide s-paper" data-screen-label="06 What Harness Means">
-        <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
-        <div class="pad pad-quad">
-          <div class="quad-head">
-            <p class="kicker a-up">Why it matters</p>
-            <div class="rule a-up"></div>
-            <h2 class="h-md a-rise">What harness means to us.</h2>
-          </div>
-          <div class="cells-fill a-stagger">
-            <div class="cell">
-              <b>01 · Same language</b>
-              <h3>Share the task clearly</h3>
-              <p>I have something in mind. What is the best way to give the agent that information so we are speaking the same language?</p>
-            </div>
-            <div class="cell">
-              <b>02 · Same outcome</b>
-              <h3>Run it reliably</h3>
-              <p>How do I get the agent to do what I have in mind — consistently, every single time?</p>
-            </div>
-            <div class="cell">
-              <b>03 · Clean code</b>
-              <h3>Good code only</h3>
-              <p>Not just code that runs — great, clean code you would merge without dread.</p>
-            </div>
-            <div class="cell">
-              <b>04 · No bad code</b>
-              <h3>Bad code is the most expensive</h3>
-              <p>Do not let bad code in. It compounds over time — and becomes the most expensive code you will ever carry.</p>
-            </div>
-          </div>
-        </div>
-        <footer class="foot"><span>Software Hacktory</span><span>06 / 44</span></footer>
-      </section>
-
-<section class="slide s-paper" data-screen-label="07 Why First">
+<section class="slide s-paper" data-screen-label="06 Why First">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
           <p class="kicker">Why this comes first</p>
@@ -1064,6 +1092,26 @@
               </ul>
               <p class="cite"><a href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noopener">Lee et al., Meta-Harness · arXiv:2603.28052</a></p>
             </div>
+          </div>
+        </div>
+        <footer class="foot"><span>Software Hacktory</span><span>06 / 44</span></footer>
+      </section>
+
+<section class="slide s-paper" data-screen-label="07 Complexity Compounds">
+        <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
+        <div class="pad">
+          <p class="kicker a-up">Why it gets worse</p>
+          <div class="rule a-up"></div>
+          <h2 class="h-md a-rise">Complexity compounds.</h2>
+          <div class="split split-mid" style="margin-top:20px; height:680px; align-items:stretch">
+            <figure class="frame a-up" style="grid-column: 1 / -1">
+              <span class="tick tick-tl"></span><span class="tick tick-tr"></span>
+              <span class="tick tick-bl"></span><span class="tick tick-br"></span>
+              <div class="frame-stage shot" style="height:580px">
+                <img src="assets/badcode_vs_goodcode.png" alt="Flags version: an edit at every site versus enum version: a two line change when adding out-of-order state" />
+              </div>
+              <figcaption class="rail">Two states barely matters — add another spec and the wrong shape edits everywhere</figcaption>
+            </figure>
           </div>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>07 / 44</span></footer>
@@ -1097,18 +1145,36 @@
         <footer class="foot"><span>Software Hacktory</span><span>08 / 44</span></footer>
       </section>
 
-<section class="slide s-paper" data-screen-label="09 Lineage">
+<section class="slide s-paper" data-screen-label="09 What Harness Means">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
-        <div class="pad">
-          <p class="kicker a-up">Run of show</p>
-          <div class="rule a-up"></div>
-          <h2 class="h-md a-rise">Build capability. Add control. Close the loop.</h2>
-          <ul class="agenda a-stagger">
-            <li><span class="n">01</span><span class="t">The kernel</span><span class="m">Model · tools · context · loop</span></li>
-            <li><span class="n">02</span><span class="t">The teaching objects</span><span class="m">Plugins · retrieval · routing · workflows</span></li>
-            <li><span class="n">03</span><span class="t">The brakes</span><span class="m">Checks · review · human judgment</span></li>
-            <li><span class="n">04</span><span class="t">The compounding loop</span><span class="m">Observe · learn · improve</span></li>
-          </ul>
+        <div class="pad pad-quad">
+          <div class="quad-head">
+            <p class="kicker a-up">Why it matters</p>
+            <div class="rule a-up"></div>
+            <h2 class="h-md a-rise">What harness means to us.</h2>
+          </div>
+          <div class="cells-fill a-stagger">
+            <div class="cell">
+              <b>01 · Same language</b>
+              <h3>Share the task clearly</h3>
+              <p>I have something in mind. What is the best way to give the agent that information so we are speaking the same language?</p>
+            </div>
+            <div class="cell">
+              <b>02 · Same outcome</b>
+              <h3>Run it reliably</h3>
+              <p>How do I get the agent to do what I have in mind — consistently, every single time?</p>
+            </div>
+            <div class="cell">
+              <b>03 · Clean code</b>
+              <h3>Good code only</h3>
+              <p>Not just code that runs — great, clean code you would merge without dread.</p>
+            </div>
+            <div class="cell">
+              <b>04 · No bad code</b>
+              <h3>Bad code is the most expensive</h3>
+              <p>Do not let bad code in. It compounds over time — and becomes the most expensive code you will ever carry.</p>
+            </div>
+          </div>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>09 / 44</span></footer>
       </section>

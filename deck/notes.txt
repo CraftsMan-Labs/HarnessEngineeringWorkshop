@@ -13,15 +13,15 @@ FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
 00:00–04:00  Thesis and language
 01  Cover
 02  Models come and go; the harness is what you own
-03  007 / Q Branch analogy
+03  007 / Q Branch analogy: model decides; harness equips
 04  Model → tools → harness → workflow → SDLC
-05  Complexity compounds
-06  Same language, repeatable outcome, clean code
 
-04:00–09:00  Evidence and agenda
-07  Terminal-Bench: same model, different harness
+04:00–09:00  Map, evidence, and stakes
+05  Four-part agenda
+06  Terminal-Bench: same model, different harness
+07  Complexity compounds
 08  Optional second evidence point: NVIDIA AVO
-09  Four-part agenda
+09  Optional: same language, repeatable outcome, clean code
 
 09:00–16:00  Harness kernel
 10  A naked model is not a dependable worker
@@ -58,8 +58,8 @@ FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
 
 FAST ROUTE — 25 SLIDES / ABOUT 25–27 MINUTES
 
-Skip 06, 08, 12, 15, 16, 19, 20, 24, and 33.
-Never skip 02–04, 07, 13, 21–23, or 25–32.
+Skip 08, 09, 12, 15, 16, 19, 20, 24, and 33.
+Never skip 02–07, 13, 21–23, or 25–32.
 
 APPENDIX / OPTIONAL — AFTER THE CLOSE
 

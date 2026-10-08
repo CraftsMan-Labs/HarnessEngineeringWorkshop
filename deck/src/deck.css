@@ -155,6 +155,59 @@
       align-items: start;
     }
     .split-mid .frame-stage { height: 440px; }
+    .bond-analogy {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 72px;
+      align-items: center;
+      height: 760px;
+    }
+    .bond-copy .h-xl { max-width: 12ch; }
+    .bond-copy .lede {
+      margin-top: 32px;
+      max-width: 25ch;
+      font-size: 30px;
+    }
+    .bond-portraits {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: end;
+    }
+    .bond-card {
+      margin: 0;
+      border: 1px solid #3a3a3a;
+      background: #171717;
+      overflow: hidden;
+    }
+    .bond-card img {
+      display: block;
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: 50% 25%;
+      filter: saturate(0.82) contrast(1.06);
+    }
+    .bond-card-q img { object-position: 50% 38%; }
+    .bond-card figcaption {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 18px 17px;
+      border-top: 1px solid #3a3a3a;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .bond-card figcaption b {
+      color: var(--color-cover-ink);
+      font-size: 18px;
+    }
+    .bond-card figcaption span {
+      color: var(--color-cover-2);
+      font-size: 13px;
+    }
     .frame {
       position: relative;
       background: var(--color-paper-2);
