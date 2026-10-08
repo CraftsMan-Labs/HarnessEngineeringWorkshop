@@ -8,26 +8,26 @@
               <div class="frame-stage">
                 <div class="flow">
                   <div class="flow-refine">
-                    <div class="box src">Trajectories<br />success<br />failure<br />recovery</div>
+                    <div class="box src">Requirement<br />real behavior<br />independent oracle</div>
                     <div class="arm arm-l"></div>
-                    <div class="box hi mid">Refine</div>
+                    <div class="box hi mid">Verify</div>
                     <div class="arm arm-r"></div>
-                    <div class="box a">Prompt</div>
-                    <div class="box b">Skill</div>
-                    <div class="box c">Memory</div>
+                    <div class="box a">Contract</div>
+                    <div class="box b">Mutation</div>
+                    <div class="box c">Integration</div>
                   </div>
                 </div>
               </div>
-              <figcaption class="rail">Evidence-backed and reviewable. No silent global rewrite.</figcaption>
+              <figcaption class="rail">Test observable behavior through a stable seam—not source-file shape.</figcaption>
             </figure>
             <div>
-              <p class="kicker a-up">H4 · RefineLoop</p>
+              <p class="kicker a-up">Harder to cheat</p>
               <div class="rule a-up"></div>
-              <h2 class="h-md a-rise">The model did not learn. The system did.</h2>
+              <h2 class="h-md a-rise">Make checks disagree with bad implementations.</h2>
               <ul class="lines a-stagger">
-                <li>Reflect on the run.</li>
-                <li>Write a small, reviewable change.</li>
-                <li>The next task starts better prepared.</li>
+                <li>Assert externally visible contracts.</li>
+                <li>Use mutation tests to prove tests can fail.</li>
+                <li>Keep a few real dependencies in the loop.</li>
               </ul>
             </div>
           </div>

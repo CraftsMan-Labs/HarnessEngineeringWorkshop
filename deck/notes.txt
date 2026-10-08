@@ -1,9 +1,90 @@
+HARNESS ENGINEERING — 40-MINUTE RUN OF SHOW
 
-Then I think over here, only we show and explain, and then I'll be explaining for 2 minutes why it matters. What harness means to us is two things:
-1. I have a task in my mind. What is the best way for me to share the information with the agent so that we are speaking the same language?
-2. How can I have the agent do what I have in my mind consistently every single time?  That was what harness means to us.
+Core promise
+Models come and go. Teams own the harness that turns probabilistic capability
+into reliable delivery.
 
-Hence, harness engineering became a very big thing.
+Audience
+Developers, project managers, founders, and technical founders.
+Slide 35 is an optional “What is a PR?” primer for a mixed audience.
 
-Then I think in the next slide we'll have the same model, different harness stuff. When you have meta harness, this is the terminal bench, and when you have a test plot, it is a different score, but just having the same model, right?
+FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
+
+00:00–04:00  Thesis and language
+01  Cover
+02  Models come and go; the harness is what you own
+03  007 / Q Branch analogy
+04  Model → tools → harness → workflow → SDLC
+05  Complexity compounds
+06  Same language, repeatable outcome, clean code
+
+04:00–09:00  Evidence and agenda
+07  Terminal-Bench: same model, different harness
+08  Optional second evidence point: NVIDIA AVO
+09  Four-part agenda
+
+09:00–16:00  Harness kernel
+10  A naked model is not a dependable worker
+11  Think → act → observe
+12  Solve once versus solve repeatedly
+13  The kernel controls context, permissions, evidence, and recovery
+14  Context is a decision, not a dump
+15  Long-horizon reliability equation
+16  Evaluation dimensions
+
+16:00–22:00  Four teaching objects
+17  Borrow the principle; do not inherit the product
+18  DeepSeek Harness: plugin runtime
+19  Optional: event log and replay
+20  Optional: Cordis composability intuition
+21  CocoIndex Code: scoped retrieval
+22  9Router: stable model gateway and explicit fallback
+23  SimpleCode: linear roles and artifact handoffs
+24  The four replaceable seams
+
+22:00–30:00  PR bottleneck and brakes
+25  AI scales output faster than review
+26  Automated checks → automated review → human review
+27  Passing tests can reward the wrong behavior
+28  Contract, mutation, and integration checks are harder to cheat
+29  Implement in one context; review in another
+30  Human review follows reversibility and blast radius
+
+30:00–32:00  Compounding loop and close
+31  Retrospectives update checks, standards, navigation, and tools
+32  Observe traces, quality, economics, and performance
+33  Build the smallest harness that closes the loop
+34  Close
+
+FAST ROUTE — 25 SLIDES / ABOUT 25–27 MINUTES
+
+Skip 06, 08, 12, 15, 16, 19, 20, 24, and 33.
+Never skip 02–04, 07, 13, 21–23, or 25–32.
+
+APPENDIX / OPTIONAL — AFTER THE CLOSE
+
+35  What is a pull request?
+36  Meta-harness definition
+37  Recursive language model
+38  Agent / kernel / workflow terminology
+39  Quality rubric
+40  Repository links
+41  Grill-me alignment pattern
+42  SimpleCode workflow example
+43  SDLC feedback loop
+44  Product claims that require evidence
+
+DELIVERY NOTES
+
+- The optional product demo is not in this deck. Leave the deck after slide 34
+  and demo only if time remains.
+- Grafana visualizes telemetry. k6 or another load generator creates the
+  performance workload.
+- Do not repeat “70% token savings,” “lossless compression,” “unlimited free,”
+  or “production ready” as facts. Slide 44 records the qualifications.
+- The four repositories are teaching objects:
+  DeepSeek Harness = plugin runtime
+  CocoIndex Code = retrieval and context scoping
+  9Router = provider gateway
+  SimpleCode = linear workflow orchestration
 
