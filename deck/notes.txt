@@ -54,7 +54,7 @@ FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
 31  Retrospectives update checks, standards, navigation, and tools
 32  Observe traces, quality, economics, and performance
 33  Build the smallest harness that closes the loop
-34  Close · LinkedIn QR and profile link
+34  Close
 
 FAST ROUTE — 25 SLIDES / ABOUT 25–27 MINUTES
 
@@ -73,11 +73,13 @@ APPENDIX / OPTIONAL — AFTER THE CLOSE
 42  SimpleCode workflow example
 43  SDLC feedback loop
 44  Product claims that require evidence
+45  Final contact slide · LinkedIn QR and profile link
 
 DELIVERY NOTES
 
-- The optional product demo is not in this deck. Leave the deck after slide 34
-  and demo only if time remains.
+- After the core close on slide 34, jump to slide 45 for the final contact
+  screen. Slides 35–44 are appendix material for questions.
+- The optional product demo is not in this deck. Demo only if time remains.
 - Grafana visualizes telemetry. k6 or another load generator creates the
   performance workload.
 - Do not repeat “70% token savings,” “lossless compression,” “unlimited free,”

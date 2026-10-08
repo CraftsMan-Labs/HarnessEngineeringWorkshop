@@ -590,23 +590,26 @@
       border-bottom-width: 3px;
     }
     .presenter-line span { color: var(--color-cover-2); }
-    .close-connect {
+    .connect-final {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 520px;
       gap: 88px;
       align-items: center;
       height: 760px;
     }
-    .close-connect .lede {
+    .connect-final .lede {
       margin-top: 28px;
       max-width: 26ch;
     }
-    .close-connect .verbs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px 32px;
-      max-width: 720px;
-      line-height: 1.4;
+    .connect-url {
+      margin-top: 42px;
+      font-family: var(--font-mono);
+      font-size: 20px;
+      letter-spacing: 0.05em;
+    }
+    .connect-url a {
+      color: var(--color-cover-ink);
+      text-underline-offset: 6px;
     }
     .linkedin-card {
       display: block;
