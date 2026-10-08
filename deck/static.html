@@ -262,6 +262,33 @@
       text-transform: uppercase;
       color: var(--color-accent);
     }
+    .tool-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-right: 220px;
+    }
+    .role-flag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 1px solid var(--color-accent);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--color-ink);
+      background: var(--color-paper-2);
+    }
+    .s-dark .role-flag {
+      color: var(--color-cover-ink);
+      background: #1a1a1a;
+    }
     .rule {
       width: 56px;
       height: 3px;
@@ -730,6 +757,74 @@
       color: var(--color-cover-2);
     }
     .verbs b { color: var(--color-accent); font-weight: 500; }
+    .presenter-line {
+      margin-top: 42px;
+      font-family: var(--font-mono);
+      font-size: 17px;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-cover-2);
+    }
+    .presenter-line a {
+      margin-left: 10px;
+      color: var(--color-cover-ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-accent);
+      text-underline-offset: 5px;
+    }
+    .presenter-line a:hover,
+    .presenter-line a:focus-visible {
+      border-bottom-width: 3px;
+    }
+    .presenter-line span { color: var(--color-cover-2); }
+    .close-connect {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 520px;
+      gap: 88px;
+      align-items: center;
+      height: 760px;
+    }
+    .close-connect .lede {
+      margin-top: 28px;
+      max-width: 26ch;
+    }
+    .close-connect .verbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 32px;
+      max-width: 720px;
+      line-height: 1.4;
+    }
+    .linkedin-card {
+      display: block;
+      overflow: hidden;
+      border: 1px solid #3a3a3a;
+      color: var(--color-cover-ink);
+      background: #111;
+      text-decoration: none;
+    }
+    .linkedin-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .linkedin-card span {
+      display: block;
+      padding: 15px 18px 16px;
+      border-top: 1px solid #3a3a3a;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--color-cover-2);
+    }
+    .linkedin-card:hover,
+    .linkedin-card:focus-visible {
+      border-color: var(--color-accent);
+    }
 
     .flow {
       width: 100%;
@@ -994,6 +1089,10 @@
           <div class="rule a-up"></div>
           <h1 class="h-hero a-rise">0 → 1</h1>
           <p class="lede a-up-2" style="margin-top:28px">Harness engineering from first principles.</p>
+          <p class="presenter-line a-up-3">
+            Presented by
+            <a href="https://www.linkedin.com/in/rishub-c-r/" target="_blank" rel="noopener">Rishub C R <span>aka Craftsman</span></a>
+          </p>
         </div>
         <footer class="foot"><span>Workshop</span><span>01 / 44</span></footer>
       </section>
@@ -1376,39 +1475,33 @@
         <footer class="foot"><span>Software Hacktory</span><span>17 / 44</span></footer>
       </section>
 
-<section class="slide s-paper s-split" data-screen-label="18 Architecture">
+<section class="slide s-paper" data-screen-label="18 Architecture">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <div class="split">
-            <figure class="frame a-up">
-              <span class="tick tick-tl"></span><span class="tick tick-tr"></span>
-              <span class="tick tick-bl"></span><span class="tick tick-br"></span>
-              <div class="frame-stage">
-                <div class="flow">
-                  <div class="stack">
-                    <div class="box">Profile</div>
-                    <div class="to"></div>
-                    <div class="box">Ordered bundles + patches</div>
-                    <div class="to"></div>
-                    <div class="box hi">Cordis plugin tree</div>
-                    <div class="to"></div>
-                    <div class="box">Model · tools · log · loop</div>
-                  </div>
-                </div>
-              </div>
-              <figcaption class="rail">No privileged core: capabilities mount beside one another.</figcaption>
-            </figure>
-            <div>
-              <p class="kicker a-up">DeepSeek Harness</p>
-              <div class="rule a-up"></div>
-              <h2 class="h-md a-rise">The runtime is a plugin tree.</h2>
-              <ul class="lines a-stagger">
-                <li>A service definition separates contract, provider, and consumer.</li>
-                <li>Unload unwinds registrations instead of leaving stale state.</li>
-                <li>Developer preview: powerful composition, breaking changes expected.</li>
-              </ul>
+          <div class="tool-heading a-up">
+            <p class="kicker">DeepSeek Harness</p>
+            <span class="role-flag">Harness part · runtime kernel</span>
+          </div>
+          <div class="rule a-up"></div>
+          <h2 class="h-md a-rise">Compose the loop. Preserve the prefix.</h2>
+          <div class="cells-3 a-stagger">
+            <div class="cell">
+              <b>Harness contribution</b>
+              <h3>Own the controlled loop</h3>
+              <p>Cordis composes model adapters, tools, policy, session state, telemetry, and recovery around each model decision.</p>
+            </div>
+            <div class="cell">
+              <b>Efficiency mechanism</b>
+              <h3>Stable history + spill</h3>
+              <p>Changed runtime context is appended after cached history. Large tool results keep a preview and spill the full text to an artifact.</p>
+            </div>
+            <div class="cell">
+              <b>Cache truth</b>
+              <h3>Cache-friendly, not measured</h3>
+              <p>Derived history incrementally folds new events; compaction replaces old ranges. The repository publishes no universal cache-hit rate.</p>
             </div>
           </div>
+          <p class="cite a-up-2"><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>18 / 44</span></footer>
       </section>
@@ -1457,15 +1550,33 @@
         <footer class="foot"><span>Software Hacktory</span><span>20 / 44</span></footer>
       </section>
 
-<section class="slide s-dark s-center" data-screen-label="21 H0 H1">
-        <img class="brand" src="assets/logo-agentics-light.svg" alt="Agentics Foundation Event" />
+<section class="slide s-paper" data-screen-label="21 H0 H1">
+        <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">CocoIndex Code · exploration</p>
+          <div class="tool-heading a-up">
+            <p class="kicker">CocoIndex Code</p>
+            <span class="role-flag">Harness part · context retrieval</span>
+          </div>
           <div class="rule a-up"></div>
-          <h2 class="h-xl a-rise">Give the model a card catalog.<br />Not the whole library.</h2>
-          <p class="lede a-up-2" style="margin-top:32px; max-width:39ch">Syntax-bounded spans → memoized embeddings → top-k paths and line ranges.</p>
-          <p class="body a-up-3" style="margin-top:32px; max-width:46ch">The index is a cache with an invalidation key—not a chat cache. It scopes context; it does not plan, review, or prove “70% savings.”</p>
-          <p class="cite a-up-3"><a href="https://github.com/cocoindex-io/cocoindex-code" target="_blank" rel="noopener">github.com/cocoindex-io/cocoindex-code</a></p>
+          <h2 class="h-md a-rise">Index structure. Retrieve only the useful spans.</h2>
+          <div class="cells-3 a-stagger">
+            <div class="cell">
+              <b>Harness contribution</b>
+              <h3>Choose what the model sees</h3>
+              <p>An AST-aware index turns repository knowledge into a scoped tool contract: query in, relevant paths and line spans out.</p>
+            </div>
+            <div class="cell">
+              <b>Efficiency mechanism</b>
+              <h3>Top-k line ranges</h3>
+              <p>The agent receives a few relevant paths and line ranges instead of opening whole files or dumping the repository.</p>
+            </div>
+            <div class="cell">
+              <b>Cache truth</b>
+              <h3>Incremental embeddings</h3>
+              <p>Unchanged files and chunk text avoid re-embedding. This is an index cache—not an LLM prompt cache—and “70%” is unverified.</p>
+            </div>
+          </div>
+          <p class="cite a-up-2"><a href="https://github.com/cocoindex-io/cocoindex-code" target="_blank" rel="noopener">github.com/cocoindex-io/cocoindex-code</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>21 / 44</span></footer>
       </section>
@@ -1473,22 +1584,29 @@
 <section class="slide s-paper" data-screen-label="22 Wow 1">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">9Router · model gateway</p>
+          <div class="tool-heading a-up">
+            <p class="kicker">9Router</p>
+            <span class="role-flag">Harness part · model access</span>
+          </div>
           <div class="rule a-up"></div>
-          <h2 class="h-md a-rise">Put a stable socket in front of unstable vendors.</h2>
-          <div class="compare a-stagger">
-            <div class="col">
-              <p class="lbl">Client contract</p>
-              <h3>One endpoint</h3>
-              <p>Pass through when formats match; translate when they do not. Keep provider auth and quirks behind the boundary.</p>
+          <h2 class="h-md a-rise">One socket. Explicit fallback. Smaller tool output.</h2>
+          <div class="cells-3 a-stagger">
+            <div class="cell">
+              <b>Harness contribution</b>
+              <h3>Make the model replaceable</h3>
+              <p>A stable local contract hides provider authentication, wire formats, account rotation, and explicit model fallback.</p>
             </div>
-            <div class="col hi">
-              <p class="lbl">Explicit policy</p>
-              <h3>Two fallback loops</h3>
-              <p>Try another account for the same provider; only then try the next model the human listed.</p>
+            <div class="cell">
+              <b>Efficiency mechanism</b>
+              <h3>Passthrough + RTK</h3>
+              <p>Matching formats bypass translation. RTK filters verbose diffs, grep, trees, and logs before the request reaches the model.</p>
+            </div>
+            <div class="cell">
+              <b>Cache truth</b>
+              <h3>Preserves provider caching</h3>
+              <p>It re-anchors provider cache markers and records cached-token usage. It has no semantic response cache; RTK is lossy.</p>
             </div>
           </div>
-          <p class="body a-up-2" style="margin-top:28px; max-width:52ch">RTK reduces tool output by dropping detail. Treat it as lossy, and treat a credential-bearing local proxy as a security boundary.</p>
           <p class="cite a-up-2"><a href="https://github.com/decolua/9router" target="_blank" rel="noopener">github.com/decolua/9router</a></p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>22 / 44</span></footer>
@@ -1497,24 +1615,27 @@
 <section class="slide s-paper" data-screen-label="23 H1 H2 Isolation">
         <img class="brand" src="assets/logo-agentics.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">SimpleCode · workflow</p>
+          <div class="tool-heading a-up">
+            <p class="kicker">SimpleCode</p>
+            <span class="role-flag">Harness layer · workflow</span>
+          </div>
           <div class="rule a-up"></div>
-          <h2 class="h-md a-rise">Fresh conversations. Written batons.</h2>
+          <h2 class="h-md a-rise">Fresh conversations. Deliberate artifact handoffs.</h2>
           <div class="cells-3 a-stagger">
             <div class="cell">
-              <b>Direction</b>
-              <h3>Control stays outside</h3>
-              <p>YAML fixes role order. Numbered prompts continue one session inside each role.</p>
+              <b>Harness contribution</b>
+              <h3>Coordinate harnessed roles</h3>
+              <p>YAML keeps control flow outside the model and sequences fresh role sessions through durable written handoffs.</p>
             </div>
             <div class="cell">
-              <b>Context</b>
+              <b>Efficiency mechanism</b>
               <h3>The last reply is the API</h3>
-              <p>Each new role receives every prior <code>output.md</code>; each file contains only that role’s latest reply.</p>
+              <p>The next role receives written <code>output.md</code> artifacts—not the previous roles’ complete tool traces and transcripts.</p>
             </div>
             <div class="cell">
-              <b>Gate</b>
-              <h3>Pause, inspect, resume</h3>
-              <p>Human checkpoints are real. DAGs, schema validation, repair loops, and context budgets are not.</p>
+              <b>Cache truth</b>
+              <h3>No orchestrator cache</h3>
+              <p>Every prior artifact still accumulates in the next first prompt. There is no token budget, compaction, schema check, or output cache.</p>
             </div>
           </div>
           <p class="cite a-up-2"><a href="https://github.com/CraftsMan-Labs/SimpleCode" target="_blank" rel="noopener">github.com/CraftsMan-Labs/SimpleCode</a></p>
@@ -1527,15 +1648,15 @@
         <div class="pad">
           <p class="kicker a-up">The architecture</p>
           <div class="rule a-up"></div>
-          <h2 class="h-xl a-rise">Four products.<br />Four replaceable seams.</h2>
+          <h2 class="h-xl a-rise">Four tools.<br />Four harness parts.</h2>
           <div class="pipe a-up-2" style="margin-top:52px; font-size:22px; gap:16px">
-            <span class="node">9Router<br /><small>client ↔ provider</small></span><span class="arr">→</span>
-            <span class="node">CocoIndex<br /><small>query ↔ spans</small></span><span class="arr">→</span>
-            <span class="node hi">DeepSeek<br /><small>services ↔ plugins</small></span><span class="arr">→</span>
-            <span class="node">SimpleCode<br /><small>role ↔ artifact</small></span>
+            <span class="node">9Router<br /><small>model access</small></span><span class="arr">→</span>
+            <span class="node">CocoIndex<br /><small>context retrieval</small></span><span class="arr">→</span>
+            <span class="node hi">DeepSeek<br /><small>runtime kernel</small></span><span class="arr">→</span>
+            <span class="node">SimpleCode<br /><small>workflow layer</small></span>
           </div>
-          <p class="pipe-ex a-up-3">gateway → retrieval → agent runtime → linear workflow</p>
-          <p class="body a-up-3" style="margin:36px auto 0; max-width:48ch">Each owns one boundary and leaves major gaps. The reusable architecture is the contract—and the explicit limit—at every seam.</p>
+          <p class="pipe-ex a-up-3">replace models → scope knowledge → control execution → coordinate roles</p>
+          <p class="body a-up-3" style="margin:36px auto 0; max-width:52ch">The kernel is the center, while gateways and retrieval are replaceable capabilities and workflow sits above it. Together they illustrate the system around the model.</p>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>24 / 44</span></footer>
       </section>
@@ -1750,18 +1871,26 @@ mutation / contract check
 <section class="slide s-dark s-center" data-screen-label="34 Close">
         <img class="brand" src="assets/logo-agentics-light.svg" alt="Agentics Foundation Event" />
         <div class="pad">
-          <p class="kicker a-up">Takeaway</p>
-          <div class="rule a-up"></div>
-          <h2 class="h-xl a-rise">The model is not the product.</h2>
-          <p class="lede a-up-2" style="margin-top:28px; max-width: 30ch;">
-            The harness is how the model becomes part of a dependable system.
-          </p>
-          <p class="verbs a-up-3">
-            <span><b>Build</b> the loop</span>
-            <span><b>Measure</b> the outcome</span>
-            <span><b>Learn</b> the trajectory</span>
-            <span><b>Improve</b> the system</span>
-          </p>
+          <div class="close-connect">
+            <div>
+              <p class="kicker a-up">Takeaway</p>
+              <div class="rule a-up"></div>
+              <h2 class="h-xl a-rise">The model is not the product.</h2>
+              <p class="lede a-up-2">
+                The harness is how the model becomes part of a dependable system.
+              </p>
+              <p class="verbs a-up-3">
+                <span><b>Build</b> the loop</span>
+                <span><b>Measure</b> the outcome</span>
+                <span><b>Learn</b> the trajectory</span>
+                <span><b>Improve</b> the system</span>
+              </p>
+            </div>
+            <a class="linkedin-card a-up-2" href="https://www.linkedin.com/in/rishub-c-r/" target="_blank" rel="noopener" aria-label="Connect with Rishub C R on LinkedIn">
+              <img src="assets/LinkedinImage.jpeg" alt="LinkedIn QR code and profile card for Rishub C R" />
+              <span>Connect with Rishub · aka Craftsman</span>
+            </a>
+          </div>
         </div>
         <footer class="foot"><span>Software Hacktory</span><span>34 / 44</span></footer>
       </section>

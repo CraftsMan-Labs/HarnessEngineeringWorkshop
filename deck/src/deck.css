@@ -74,6 +74,33 @@
       text-transform: uppercase;
       color: var(--color-accent);
     }
+    .tool-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-right: 220px;
+    }
+    .role-flag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 1px solid var(--color-accent);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--color-ink);
+      background: var(--color-paper-2);
+    }
+    .s-dark .role-flag {
+      color: var(--color-cover-ink);
+      background: #1a1a1a;
+    }
     .rule {
       width: 56px;
       height: 3px;
@@ -542,6 +569,74 @@
       color: var(--color-cover-2);
     }
     .verbs b { color: var(--color-accent); font-weight: 500; }
+    .presenter-line {
+      margin-top: 42px;
+      font-family: var(--font-mono);
+      font-size: 17px;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-cover-2);
+    }
+    .presenter-line a {
+      margin-left: 10px;
+      color: var(--color-cover-ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-accent);
+      text-underline-offset: 5px;
+    }
+    .presenter-line a:hover,
+    .presenter-line a:focus-visible {
+      border-bottom-width: 3px;
+    }
+    .presenter-line span { color: var(--color-cover-2); }
+    .close-connect {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 520px;
+      gap: 88px;
+      align-items: center;
+      height: 760px;
+    }
+    .close-connect .lede {
+      margin-top: 28px;
+      max-width: 26ch;
+    }
+    .close-connect .verbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 32px;
+      max-width: 720px;
+      line-height: 1.4;
+    }
+    .linkedin-card {
+      display: block;
+      overflow: hidden;
+      border: 1px solid #3a3a3a;
+      color: var(--color-cover-ink);
+      background: #111;
+      text-decoration: none;
+    }
+    .linkedin-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .linkedin-card span {
+      display: block;
+      padding: 15px 18px 16px;
+      border-top: 1px solid #3a3a3a;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--color-cover-2);
+    }
+    .linkedin-card:hover,
+    .linkedin-card:focus-visible {
+      border-color: var(--color-accent);
+    }
 
     .flow {
       width: 100%;

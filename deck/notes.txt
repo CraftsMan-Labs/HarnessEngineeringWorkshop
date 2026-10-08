@@ -11,7 +11,7 @@ Slide 35 is an optional “What is a PR?” primer for a mixed audience.
 FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
 
 00:00–04:00  Thesis and language
-01  Cover
+01  Cover · presented by Rishub C R, aka Craftsman
 02  Models come and go; the harness is what you own
 03  007 / Q Branch analogy: model decides; harness equips
 04  Model → tools → harness → workflow → SDLC
@@ -54,7 +54,7 @@ FULL ROUTE — 34 CORE SLIDES / ABOUT 32 MINUTES
 31  Retrospectives update checks, standards, navigation, and tools
 32  Observe traces, quality, economics, and performance
 33  Build the smallest harness that closes the loop
-34  Close
+34  Close · LinkedIn QR and profile link
 
 FAST ROUTE — 25 SLIDES / ABOUT 25–27 MINUTES
 
@@ -91,6 +91,8 @@ DELIVERY NOTES
 RESEARCH-BACKED TALK TRACK — SLIDES 18–24
 
 18  DeepSeek Harness · plugin runtime
+- Flag: RUNTIME KERNEL. This is the center of the harness: it owns the
+  controlled model/tool loop, session state, policy, telemetry, and recovery.
 - Current source inspected at 0.2.1-alpha.1. The project calls itself developer
   preview and warns that compatibility-breaking changes are expected.
 - “Everything is a plugin” is literal: the model adapter, tool registry,
@@ -101,6 +103,14 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
   This is the transferable design; “use plugins” by itself is too vague.
 - Cordis registrations are reversible effects. Unloading a plugin unwinds its
   listeners and registrations instead of leaving stale state.
+- Token efficiency comes from several mechanisms, not one magic cache:
+  stable system/history nodes preserve a provider-cache-friendly prefix;
+  dynamic prompt context is logged only when it changes; large tool results
+  can retain a preview while spilling full text; compaction replaces old
+  surface ranges with a summary.
+- Its own derived-history projection is incremental: pure tail growth processes
+  only new nodes, while a replacement rebuilds the projection. This is an
+  application cache, not evidence of a published LLM cache-hit percentage.
 - Do not call it secure or production-ready. Its safety notice says it has not
   undergone a security audit and sandboxing is not a sole security control.
 
@@ -120,12 +130,16 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
 - Do not teach the paper’s calculus in this talk.
 
 21  CocoIndex Code · retrieval and cache
+- Flag: CONTEXT RETRIEVAL. This is a replaceable harness capability that
+  decides which repository knowledge enters the model’s limited context.
 - Current source inspected at 0.2.42, classified Alpha.
 - It is a local code-search tool, not a planner or coding agent.
 - The default path creates syntax-aware chunks around 1,000 bytes, with a
   250-byte minimum and 150-byte overlap, then returns top-k path/line spans.
 - The cache is the incremental index: unchanged files and unchanged chunk text
   avoid re-embedding. It is not an LLM KV cache or response cache.
+- The long-lived daemon also avoids repeatedly loading the local embedding
+  model. That saves startup work, not chat-model tokens.
 - The invalidation key matters: changing the embedder or indexing parameters
   forces re-embedding; changing chunk configuration forces re-chunking.
 - Operational nuance: CLI search does not refresh by default; MCP search does.
@@ -134,6 +148,8 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
   mechanism, not the percentage.
 
 22  9Router · provider gateway
+- Flag: MODEL ACCESS. This is the adapter boundary that keeps provider-specific
+  authentication, protocols, and fallback outside the rest of the harness.
 - Current source inspected at 0.5.99, still pre-1.0.
 - It is a credential-bearing local gateway, not an agent. A client calls one
   endpoint; the gateway passes through matching formats or translates others.
@@ -142,11 +158,16 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
 - It does not autonomously route “subscription → cheap → free.”
 - RTK filters tool results before the model sees them. Limits on diffs, grep
   matches, and head/tail output make this lossy compression.
+- 9Router preserves and re-anchors provider prompt-cache markers after request
+  translation or compression, and records cache-read/cache-write token usage.
+  It does not implement a semantic response cache.
 - Security note: provider credentials and optional request bodies are local
   data; MITM mode installs a local CA. Treat the proxy as a trust boundary.
 - Do not repeat “unlimited free,” “never hit limits,” or “lossless 20–40%.”
 
 23  SimpleCode · linear workflow
+- Flag: WORKFLOW LAYER. This coordinates harnessed roles above the kernel; it
+  should not be confused with the single-agent runtime itself.
 - Current source inspected at 0.1.0, classified Alpha, with no matching GitHub
   release/tag at inspection time.
 - YAML fixes the role sequence. Numbered prompts inside one role resume the
@@ -155,6 +176,9 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
   The final prompt must restate the plan, status, or verdict.
 - The next role receives the original inputs plus every prior output.md, so the
   artifact chain can still grow even though sessions are fresh.
+- SimpleCode has no orchestrator-level result cache, token budget, or automatic
+  compaction. Headroom is an optional sidecar in its example stack, not part of
+  the pipeline runner.
 - Human gates, checkpoint/resume, worktrees, and optional containers are real.
 - DAGs, conditional branches, schema-validated handoffs, context budgets, and
   automatic repair after a blocked review are not implemented by the runner.
@@ -162,10 +186,10 @@ RESEARCH-BACKED TALK TRACK — SLIDES 18–24
 
 24  Synthesis
 - The four tools are complementary examples, not a complete endorsed stack.
-- 9Router owns client/provider adaptation.
-- CocoIndex owns query/relevant-span retrieval.
-- DeepSeek Harness owns service/plugin composition and the controlled loop.
-- SimpleCode owns role/artifact sequencing.
+- 9Router contributes model access and client/provider adaptation.
+- CocoIndex contributes context retrieval and relevant-span selection.
+- DeepSeek Harness contributes the runtime kernel and controlled loop.
+- SimpleCode contributes workflow coordination and artifact sequencing.
 - Every seam needs a stable contract, an explicit limit, telemetry, and a
   replacement path. That is the first-principles lesson.
 
